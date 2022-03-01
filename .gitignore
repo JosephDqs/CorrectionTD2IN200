@@ -127,3 +127,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# output
+new_notes.txt
+*.comp
+
+*.mel
+
+words5.txt
+
+words6.txt
+
+wordsn.txt
