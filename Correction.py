@@ -8,7 +8,6 @@ Created on Tue Feb 22 09:44:40 2022
 #        Import            #
 ############################
 
-import sys
 import random
 
 ############################
