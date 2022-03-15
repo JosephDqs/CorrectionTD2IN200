@@ -4,6 +4,7 @@ Created on Tue Feb 22 09:44:40 2022
 
 @author: JDQS
 """
+# https://github.com/JosephDqs/CorrectionTD2IN200
 ############################
 #        Import            #
 ############################
@@ -40,7 +41,7 @@ def exercice_1():
     # On pense bien à fermer le fichier
     notes.close()
     # On ré-écrit nos notes dans le fichier
-    ecrire_notes = open("new_notes.txt", "w")
+    ecrire_notes = open("moyennes.txt", "w")
     for listes in list_notes:
         for elem in listes:
             # On re-écrit les éléements de notre liste
@@ -58,6 +59,7 @@ def exercice_1():
 def nb_lignes(nom_fichier):
     fichier = open(nom_fichier, "r")
     lines = fichier.readlines()
+    fichier.close()
     return(len(lines))
 
 
@@ -72,7 +74,6 @@ def ecrit_liste_mots(n):
             fichier2.write(f"{new_line}")
     fichier1.close()
     fichier2.close()
-    pass
 
 
 def melange_mots(nom_fichier):
@@ -87,18 +88,21 @@ def melange_mots(nom_fichier):
 
 
 def compare_mots(m1, m2):
-    profil = []
     m1 = m1.strip("\n")
     n = len(m1)
+    profil = [-1] * n
     copy_m2 = list(m2)
-    for i in range(0, n):
+    for i in range(0, n):  # on verifie d'abord les similaires
         if(m1[i] == m2[i]):
-            profil.append(1)
-        elif(m1[i] in copy_m2):
-            profil.append(2)
+            profil[i] = 1
             copy_m2.remove(m1[i])
-        else:
-            profil.append(0)
+    for i in range(0,n):  # puis les mal placées
+        if(profil[i] == -1 ):
+            if(m1[i] in copy_m2):
+                profil[i] = 2
+                copy_m2.remove(m1[i])
+            else:
+                profil[i] = 0
     return profil
 
 
